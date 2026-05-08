@@ -1,5 +1,4 @@
 # Supabase credentials — never commit your keys
-supabase-config.js
 
 # macOS
 .DS_Store
