@@ -52,12 +52,19 @@ searchInput.addEventListener('input', () => {
     return;
   }
 
-  sugBox.innerHTML = matches.slice(0, 8).map(g => `
+  sugBox.innerHTML = matches.slice(0, 8).map(g => {
+    const statusLabel = g.status === 'attending'
+      ? '<span class="sug-status sug-status--attending">✓ Attending</span>'
+      : g.status === 'not_attending'
+        ? '<span class="sug-status sug-status--declined">✗ Declined</span>'
+        : '';
+    return `
     <div class="suggestion-item" data-id="${g.id}">
       <span class="sug-name">${g.name}</span>
       <span class="sug-seats">${g.seats} seat${g.seats > 1 ? 's' : ''}</span>
-    </div>
-  `).join('');
+      ${statusLabel}
+    </div>`;
+  }).join('');
   sugBox.style.display = 'block';
 });
 
@@ -87,7 +94,9 @@ sugBox.addEventListener('click', e => {
   }
   seatsSelect.value = selectedGuest.seats; // default to full allotment
   seatsRow.style.display = 'block';
-  document.getElementById('seatsCheck').style.display = 'none';
+  const seatsCheck = document.getElementById('seatsCheck');
+  seatsCheck.classList.remove('seats-check-pop');
+  seatsCheck.style.display = 'none';
 
   // Use onchange (not addEventListener) to avoid stacking duplicate listeners
   seatsSelect.onchange = async () => {
@@ -147,8 +156,29 @@ async function submitRSVP(status) {
   showStep('step-done');
 }
 
-document.getElementById('backBtn').addEventListener('click',  () => { selectedGuest = null; document.getElementById('seatsRow').style.display = 'none'; showStep('step-search'); });
-document.getElementById('resetBtn').addEventListener('click', () => { selectedGuest = null; showStep('step-search'); });
+document.getElementById('backBtn').addEventListener('click', () => {
+  selectedGuest = null;
+  document.getElementById('seatsRow').style.display = 'none';
+  const sc = document.getElementById('seatsCheck');
+  sc.classList.remove('seats-check-pop');
+  sc.style.display = 'none';
+  searchInput.value = '';
+  sugBox.style.display = 'none';
+  notFound.style.display = 'none';
+  showStep('step-search');
+});
+
+document.getElementById('resetBtn').addEventListener('click', () => {
+  selectedGuest = null;
+  document.getElementById('seatsRow').style.display = 'none';
+  const sc = document.getElementById('seatsCheck');
+  sc.classList.remove('seats-check-pop');
+  sc.style.display = 'none';
+  searchInput.value = '';
+  sugBox.style.display = 'none';
+  notFound.style.display = 'none';
+  showStep('step-search');
+});
 
 function showStep(id) {
   document.querySelectorAll('.rsvp-step').forEach(s => s.classList.remove('active'));
