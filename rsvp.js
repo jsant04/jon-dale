@@ -214,14 +214,25 @@ const enterOverlay = document.getElementById('enterOverlay');
 const enterBtn     = document.getElementById('enterBtn');
 
 bgMusic.volume = 0.35;
+bgMusic.load();
 
 enterBtn.addEventListener('click', () => {
-  bgMusic.play().catch(() => {});
+  // Play audio — must happen directly inside click handler (user gesture)
+  bgMusic.currentTime = 0;
+  bgMusic.play().then(() => {
+    // playing successfully
+  }).catch(() => {
+    // Some browsers need a tiny delay
+    setTimeout(() => bgMusic.play().catch(() => {}), 100);
+  });
 
-  // Also trigger the hero video — browsers allow play() after a user gesture
+  // Play hero video
   const heroVideo = document.querySelector('.hero-video');
   if (heroVideo) heroVideo.play().catch(() => {});
 
-  enterOverlay.classList.add('hidden');
-  enterOverlay.addEventListener('transitionend', () => enterOverlay.remove(), { once: true });
+  // Hide overlay after a short delay so audio starts cleanly
+  setTimeout(() => {
+    enterOverlay.classList.add('hidden');
+    enterOverlay.addEventListener('transitionend', () => enterOverlay.remove(), { once: true });
+  }, 80);
 });
