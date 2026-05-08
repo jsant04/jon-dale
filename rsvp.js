@@ -122,30 +122,15 @@ function showStep(id) {
   document.getElementById(id).classList.add('active');
 }
 
-// ── Background music ──
-const bgMusic = document.getElementById('bgMusic');
+// ── Enter overlay + background music ──
+const bgMusic      = document.getElementById('bgMusic');
+const enterOverlay = document.getElementById('enterOverlay');
+const enterBtn     = document.getElementById('enterBtn');
+
 bgMusic.volume = 0.35;
 
-function tryPlay() {
-  bgMusic.play().catch(() => {
-    // Browser blocked autoplay — wait for first user interaction
-    const onInteract = () => {
-      bgMusic.play().catch(() => {});
-      window.removeEventListener('click',      onInteract);
-      window.removeEventListener('keydown',    onInteract);
-      window.removeEventListener('scroll',     onInteract);
-      window.removeEventListener('touchstart', onInteract);
-    };
-    window.addEventListener('click',      onInteract, { once: true });
-    window.addEventListener('keydown',    onInteract, { once: true });
-    window.addEventListener('scroll',     onInteract, { once: true });
-    window.addEventListener('touchstart', onInteract, { once: true });
-  });
-}
-
-// Wait until enough audio has loaded before attempting play
-if (bgMusic.readyState >= 3) {
-  tryPlay();
-} else {
-  bgMusic.addEventListener('canplay', tryPlay, { once: true });
-}
+enterBtn.addEventListener('click', () => {
+  bgMusic.play().catch(() => {});
+  enterOverlay.classList.add('hidden');
+  enterOverlay.addEventListener('transitionend', () => enterOverlay.remove(), { once: true });
+});
