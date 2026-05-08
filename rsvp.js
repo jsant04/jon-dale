@@ -74,6 +74,19 @@ sugBox.addEventListener('click', e => {
   document.getElementById('displayName').textContent = selectedGuest.name;
   document.getElementById('displaySeats').textContent =
     `${selectedGuest.seats} seat${selectedGuest.seats > 1 ? 's' : ''} reserved`;
+
+  // Build seats dropdown up to the guest's allotted seats
+  const seatsSelect = document.getElementById('seatsSelect');
+  const seatsRow    = document.getElementById('seatsRow');
+  seatsSelect.innerHTML = '';
+  for (let i = 1; i <= selectedGuest.seats; i++) {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `${i} seat${i > 1 ? 's' : ''}`;
+    seatsSelect.appendChild(opt);
+  }
+  seatsSelect.value = selectedGuest.seats; // default to full allotment
+  seatsRow.style.display = 'block';
 });
 
 document.addEventListener('click', e => {
@@ -88,9 +101,11 @@ async function submitRSVP(status) {
   if (!selectedGuest) return;
 
   // Write the response back to Supabase
+  const confirmedSeats = parseInt(document.getElementById('seatsSelect').value, 10) || selectedGuest.seats;
+
   const { error } = await db
     .from('guests')
-    .update({ status, updated_at: new Date().toISOString() })
+    .update({ status, confirmed_seats: confirmedSeats, updated_at: new Date().toISOString() })
     .eq('id', selectedGuest.id);
 
   if (error) {
@@ -114,7 +129,7 @@ async function submitRSVP(status) {
   showStep('step-done');
 }
 
-document.getElementById('backBtn').addEventListener('click',  () => { selectedGuest = null; showStep('step-search'); });
+document.getElementById('backBtn').addEventListener('click',  () => { selectedGuest = null; document.getElementById('seatsRow').style.display = 'none'; showStep('step-search'); });
 document.getElementById('resetBtn').addEventListener('click', () => { selectedGuest = null; showStep('step-search'); });
 
 function showStep(id) {

@@ -649,6 +649,38 @@ section{
   color:var(--gold-light);
   font-size:1.1em;
 }
+/* Seats dropdown */
+.seats-row{text-align:center}
+.seats-label{
+  display:block;
+  font-family:'Jost',sans-serif;
+  font-weight:200;
+  font-size:0.72rem;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(255,248,235,0.45);
+  margin-bottom:0.65rem;
+}
+.seats-select{
+  background:rgba(255,248,235,0.04);
+  border:1px solid rgba(201,169,110,0.3);
+  border-radius:4px;
+  color:var(--champagne);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.05rem;
+  letter-spacing:0.06em;
+  padding:0.55rem 2rem 0.55rem 1rem;
+  cursor:pointer;
+  outline:none;
+  appearance:none;
+  -webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A96E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 0.75rem center;
+  transition:border-color 0.3s;
+}
+.seats-select:hover,.seats-select:focus{border-color:var(--champagne)}
+.seats-select option{background:#1A1410;color:var(--champagne)}
 .back-btn{
   margin-top:2rem;
   background:none;
