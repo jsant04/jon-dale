@@ -89,8 +89,9 @@ sugBox.addEventListener('click', e => {
   seatsRow.style.display = 'block';
   document.getElementById('seatsCheck').style.display = 'none';
 
-  // Save seat count immediately when dropdown changes
-  seatsSelect.addEventListener('change', async () => {
+  // Use onchange (not addEventListener) to avoid stacking duplicate listeners
+  seatsSelect.onchange = async () => {
+    if (!selectedGuest) return;
     const confirmedSeats = parseInt(seatsSelect.value, 10);
     const { error } = await db
       .from('guests')
@@ -99,12 +100,11 @@ sugBox.addEventListener('click', e => {
     if (!error) {
       const check = document.getElementById('seatsCheck');
       check.style.display = 'inline-flex';
-      // pulse animation
       check.classList.remove('seats-check-pop');
       void check.offsetWidth;
       check.classList.add('seats-check-pop');
     }
-  });
+  };
 });
 
 document.addEventListener('click', e => {
