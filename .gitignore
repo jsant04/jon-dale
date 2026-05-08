@@ -6,4 +6,3 @@ supabase-config.js
 
 # Local media files (served via Supabase Storage in production)
 *.mp4
-*.mp3
