@@ -146,6 +146,11 @@ bgMusic.volume = 0.35;
 
 enterBtn.addEventListener('click', () => {
   bgMusic.play().catch(() => {});
+
+  // Also trigger the hero video — browsers allow play() after a user gesture
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) heroVideo.play().catch(() => {});
+
   enterOverlay.classList.add('hidden');
   enterOverlay.addEventListener('transitionend', () => enterOverlay.remove(), { once: true });
 });
