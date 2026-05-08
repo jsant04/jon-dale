@@ -137,6 +137,29 @@ function showStep(id) {
   document.getElementById(id).classList.add('active');
 }
 
+// ── Countdown timer ──
+(function() {
+  const target = new Date('2026-08-08T17:30:00');
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    const diff = target - Date.now();
+    if(diff <= 0){
+      document.getElementById('cd-days').textContent    = '00';
+      document.getElementById('cd-hours').textContent   = '00';
+      document.getElementById('cd-minutes').textContent = '00';
+      document.getElementById('cd-seconds').textContent = '00';
+      return;
+    }
+    const s = Math.floor(diff/1000);
+    document.getElementById('cd-days').textContent    = pad(Math.floor(s/86400));
+    document.getElementById('cd-hours').textContent   = pad(Math.floor((s%86400)/3600));
+    document.getElementById('cd-minutes').textContent = pad(Math.floor((s%3600)/60));
+    document.getElementById('cd-seconds').textContent = pad(s%60);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
 // ── Enter overlay + background music ──
 const bgMusic      = document.getElementById('bgMusic');
 const enterOverlay = document.getElementById('enterOverlay');

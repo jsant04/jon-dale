@@ -20,7 +20,7 @@
   <div class="enter-inner">
     <div class="enter-monogram">J &amp; D</div>
     <div class="enter-divider"></div>
-    <p class="enter-date">June 21 &middot; 2025</p>
+    <p class="enter-date">August 8 &middot; 2026</p>
     <button id="enterBtn">
       <span class="enter-btn-text">Enter</span>
     </button>
@@ -47,12 +47,13 @@
   <div class="hero-light-leak"></div>
   <div class="hero-glow"></div>
   <div class="hero-content">
-    <p class="hero-date-pre">The twenty-first of June — Two thousand twenty-five</p>
+    <p class="hero-date-pre">The eighth of August — Two thousand twenty-six</p>
     <h1 class="hero-names">
       Jon<span class="hero-ampersand">&amp;</span>Dale
     </h1>
     <div class="hero-divider"></div>
-    <p class="hero-tagline">Two souls. One golden evening. Forever begins.</p>
+    <p class="hero-tagline">8.8 Confirmed.</p>
+    <p class="hero-tagline">The biggest checkout of 2026.</p>
     <div class="hero-cta">
       <a href="#story">
         <span>Scroll to Begin</span>
@@ -87,7 +88,30 @@ forever. From “Add to cart”… to “Add to life.”
     <div class="story-photo reveal reveal-delay-4">
       <img src="pic.jpeg" alt="Jon &amp; Dale" class="story-img">
     </div>
-    <div class="story-ornament reveal reveal-delay-4">— ◆ —</div>
+    <div class="countdown-block reveal reveal-delay-4">
+      <p class="countdown-label">Until the Big Day</p>
+      <div class="countdown-timer">
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-days">00</span>
+          <span class="countdown-unit-label">Days</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-hours">00</span>
+          <span class="countdown-unit-label">Hours</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-minutes">00</span>
+          <span class="countdown-unit-label">Minutes</span>
+        </div>
+        <span class="countdown-sep">:</span>
+        <div class="countdown-unit">
+          <span class="countdown-num" id="cd-seconds">00</span>
+          <span class="countdown-unit-label">Seconds</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -112,17 +136,17 @@ forever. From “Add to cart”… to “Add to life.”
         <div class="tl-empty"></div>
         <div class="tl-dot"></div>
         <div class="tl-content">
-          <div class="tl-time">4:00 PM</div>
-          <div class="tl-title">The Ceremony</div>
-          <div class="tl-desc">Exchange of vows in the Grand Garden Terrace</div>
+          <div class="tl-time">5:45 PM</div>
+          <div class="tl-title">Please be seated</div>
+          <div class="tl-desc">we start early</div>
         </div>
       </div>
 
       <div class="timeline-item reveal reveal-delay-2">
         <div class="tl-content">
-          <div class="tl-time">5:00 PM</div>
-          <div class="tl-title">Cocktail Hour</div>
-          <div class="tl-desc">Canapés, music, and golden hour portraits</div>
+          <div class="tl-time">6:00 PM</div>
+          <div class="tl-title">Dinner Time</div>
+          <div class="tl-desc">Food will be served</div>
         </div>
         <div class="tl-dot"></div>
         <div class="tl-empty"></div>
@@ -133,12 +157,12 @@ forever. From “Add to cart”… to “Add to life.”
         <div class="tl-dot"></div>
         <div class="tl-content">
           <div class="tl-time">7:00 PM</div>
-          <div class="tl-title">Dinner &amp; Speeches</div>
-          <div class="tl-desc">Four-course dinner in the Grand Ballroom</div>
+          <div class="tl-title">Music &amp; Celebration</div>
+          <div class="tl-desc">Dancing, desserts, and forever memories</div>
         </div>
       </div>
 
-      <div class="timeline-item reveal reveal-delay-4">
+      <!-- <div class="timeline-item reveal reveal-delay-4">
         <div class="tl-content">
           <div class="tl-time">9:00 PM</div>
           <div class="tl-title">First Dance &amp; Celebration</div>
@@ -146,7 +170,7 @@ forever. From “Add to cart”… to “Add to life.”
         </div>
         <div class="tl-dot"></div>
         <div class="tl-empty"></div>
-      </div>
+      </div> -->
 
     </div>
   </div>
@@ -161,47 +185,61 @@ forever. From “Add to cart”… to “Add to life.”
     <div class="venue-grid reveal reveal-delay-2">
       <div class="venue-card">
         <div class="venue-icon">◈ LOCATION</div>
-        <div class="venue-card-title">The Rosewood Manor</div>
+        <div class="venue-card-title">JADE GARDEN RESTAURANT</div>
         <div class="venue-card-text">
-          12 Golden Terrace Lane<br>
-          Sunset Hills, CA 90210<br><br>
-          Nestled among ancient olive trees and terraced gardens, Rosewood Manor offers an unrivalled backdrop for an evening of elegant celebration.
+          2nd Level, Glorietta 2<br>
+          Palm Dr. cor. West Dr, Palm Dr,<br>Makati City<br>
         </div>
       </div>
       <div class="venue-card">
         <div class="venue-icon">◈ DRESS CODE</div>
-        <div class="venue-card-title">Black Tie Optional</div>
+        <div class="venue-card-title">Semi-Formal</div>
         <div class="venue-card-text">
-          We invite you to dress in your most elegant attire. Ladies may choose floor-length gowns or formal cocktail dress. Gentlemen are welcome in a tuxedo or dark suit.<br><br>
-          <em style="color:rgba(201,169,110,0.6);font-family:'Cormorant Garamond',serif">Please avoid white and ivory tones.</em>
+          Dress to impress in our chosen color palette for the evening.
+        </div>
+        <div class="color-motif">
+          <div class="color-swatch-wrap">
+            <div class="color-swatch" style="background:#FCB622"></div>
+            <span class="color-swatch-name">Color 1</span>
+          </div>
+          <div class="color-swatch-wrap">
+            <div class="color-swatch" style="background:#F8533c"></div>
+            <span class="color-swatch-name">Color 2</span>
+          </div>
+          <div class="color-swatch-wrap">
+            <div class="color-swatch" style="background:#af2b53"></div>
+            <span class="color-swatch-name">Color 3</span>
+          </div>
+          <div class="color-swatch-wrap">
+            <div class="color-swatch" style="background:#732c99"></div>
+            <span class="color-swatch-name">Color 4</span>
+          </div>
         </div>
       </div>
-      <div class="venue-card">
+      <!-- <div class="venue-card">
         <div class="venue-icon">◈ PARKING</div>
         <div class="venue-card-title">Valet &amp; Parking</div>
         <div class="venue-card-text">
           Complimentary valet parking is available from 2:30 PM. A shuttle service will run every 30 minutes from the Sunrise Hotel on Main Street for those staying nearby.
-        </div>
+        </div> -->
       </div>
-      <div class="venue-card">
+      <!-- <div class="venue-card">
         <div class="venue-icon">◈ ACCOMMODATION</div>
         <div class="venue-card-title">Staying the Night</div>
         <div class="venue-card-text">
           A room block has been reserved at the Sunrise Boutique Hotel at a special rate. Quote <em style="color:var(--gold-light);font-family:'Cormorant Garamond',serif">"JonDale2025"</em> when booking. Rooms are available on a first-come basis.
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="map-container reveal reveal-delay-3">
-      <div class="map-placeholder">
-        <div class="map-grid-lines"></div>
-        <div class="map-pin">📍</div>
-        <div class="map-label">The Rosewood Manor</div>
-        <div class="map-sub">12 Golden Terrace Lane · Sunset Hills, CA</div>
-      </div>
-      <p style="margin-top:1.2rem;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(201,169,110,0.35)">
-        Replace this placeholder with your Google Maps embed
-      </p>
+      <iframe
+        class="google-map"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.836811206159!2d121.02404449999997!3d14.551322899999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c904b4d4864f%3A0x1e93674fcb4ab4f3!2sJade%20Garden!5e0!3m2!1sen!2sph!4v1778218900779!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
   </div>
 </section>
