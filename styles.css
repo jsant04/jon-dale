@@ -579,11 +579,11 @@ section{
 }
 .rsvp-label{
   font-family:'Jost',sans-serif;
-  font-weight:200;
+  font-weight:500;
   font-size:0.68rem;
   letter-spacing:0.3em;
   text-transform:uppercase;
-  color:var(--champagne);
+  color:var(--orange-glow);
   margin-bottom:1.2rem;
 }
 .search-wrapper{
@@ -593,7 +593,7 @@ section{
 .rsvp-input{
   width:100%;
   background:rgba(255,235,220,0.04);
-  border:1px solid rgba(220,137,96,0.25);
+  border:1px solid var(--champagne);
   color:var(--cream);
   font-family:'Cormorant Garamond',serif;
   font-size:1.2rem;
