@@ -126,17 +126,26 @@ function showStep(id) {
 const bgMusic = document.getElementById('bgMusic');
 bgMusic.volume = 0.35;
 
-// Browsers block autoplay until the user interacts with the page.
-// We attempt to play immediately; if blocked, we retry on the first
-// interaction (click, keydown, or scroll).
-bgMusic.play().catch(() => {
-  const startMusic = () => {
-    bgMusic.play();
-    window.removeEventListener('click',   startMusic);
-    window.removeEventListener('keydown', startMusic);
-    window.removeEventListener('scroll',  startMusic);
-  };
-  window.addEventListener('click',   startMusic, { once: true });
-  window.addEventListener('keydown', startMusic, { once: true });
-  window.addEventListener('scroll',  startMusic, { once: true });
-});
+function tryPlay() {
+  bgMusic.play().catch(() => {
+    // Browser blocked autoplay — wait for first user interaction
+    const onInteract = () => {
+      bgMusic.play().catch(() => {});
+      window.removeEventListener('click',      onInteract);
+      window.removeEventListener('keydown',    onInteract);
+      window.removeEventListener('scroll',     onInteract);
+      window.removeEventListener('touchstart', onInteract);
+    };
+    window.addEventListener('click',      onInteract, { once: true });
+    window.addEventListener('keydown',    onInteract, { once: true });
+    window.addEventListener('scroll',     onInteract, { once: true });
+    window.addEventListener('touchstart', onInteract, { once: true });
+  });
+}
+
+// Wait until enough audio has loaded before attempting play
+if (bgMusic.readyState >= 3) {
+  tryPlay();
+} else {
+  bgMusic.addEventListener('canplay', tryPlay, { once: true });
+}
