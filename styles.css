@@ -219,7 +219,7 @@ section{
   font-size:0.62rem;
   letter-spacing:0.45em;
   text-transform:uppercase;
-  color:var(--champagne);
+  color: white;
   margin-bottom:1.5rem;
   display:flex;align-items:center;gap:1.2rem;
 }
@@ -289,6 +289,28 @@ section{
   border-top:1px solid rgba(220,137,96,0.2);
   border-bottom:1px solid rgba(220,137,96,0.2);
 }
+.story-photo{
+  width:100%;
+  max-width:560px;
+  margin:2.5rem auto;
+  position:relative;
+}
+.story-photo::before{
+  content:'';
+  position:absolute;
+  inset:-6px;
+  border:1px solid rgba(220,137,96,0.3);
+  pointer-events:none;
+}
+.story-img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:cover;
+  filter:sepia(0.15) brightness(0.95);
+  transition:filter 0.5s ease;
+}
+.story-img:hover{filter:sepia(0) brightness(1)}
 .story-ornament{
   text-align:center;
   color:var(--champagne);
