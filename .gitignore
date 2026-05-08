@@ -1,0 +1,9 @@
+# Supabase credentials — never commit your keys
+supabase-config.js
+
+# macOS
+.DS_Store
+
+# Large media files (optional — remove if you want to track them)
+*.mp4
+*.mp3
