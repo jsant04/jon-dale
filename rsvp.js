@@ -226,9 +226,14 @@ enterBtn.addEventListener('click', () => {
     setTimeout(() => bgMusic.play().catch(() => {}), 100);
   });
 
-  // Play hero video
+  // Play hero video — also inside click handler to satisfy user gesture requirement
   const heroVideo = document.querySelector('.hero-video');
-  if (heroVideo) heroVideo.play().catch(() => {});
+  if (heroVideo) {
+    heroVideo.muted = true; // ensure muted so browser allows autoplay
+    heroVideo.play().catch(() => {
+      setTimeout(() => heroVideo.play().catch(() => {}), 200);
+    });
+  }
 
   // Hide overlay after a short delay so audio starts cleanly
   setTimeout(() => {
