@@ -511,8 +511,8 @@ section{
 }
 .color-swatch{
   width:100%;
-  aspect-ratio:1/1.4;
-  border-radius:2px;
+  aspect-ratio:1/1;
+  border-radius:50%;
   border:1px solid rgba(255,235,220,0.1);
   transition:transform 0.3s;
 }
