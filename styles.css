@@ -322,7 +322,7 @@ section{
 
 /* ── SCHEDULE ── */
 #schedule{
-  background: linear-gradient(90deg, #BF79A9 0%, #6B44C7 100%);
+  background: linear-gradient(90deg, #D49DA9 0%, #AF2B53 100%);
 }
 .timeline{
   position:relative;
@@ -397,7 +397,7 @@ section{
 
 /* ── VENUE ── */
 #venue{
-  background:linear-gradient(180deg, #280f04 0%, #1c0a02 100%);
+  background: linear-gradient(90deg, #BF79A9 0%, #6B44C7 100%);
 }
 .venue-grid{
   display:grid;
@@ -484,7 +484,7 @@ section{
 
 /* ── RSVP ── */
 #rsvp{
-  background:linear-gradient(180deg, #1c0a02 0%, #160802 50%, #1c0a02 100%);
+  background: linear-gradient(90deg, #A593DB 0%, #45289C 100%);
   text-align:center;
 }
 .rsvp-box{
