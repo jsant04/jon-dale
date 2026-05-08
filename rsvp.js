@@ -87,6 +87,24 @@ sugBox.addEventListener('click', e => {
   }
   seatsSelect.value = selectedGuest.seats; // default to full allotment
   seatsRow.style.display = 'block';
+  document.getElementById('seatsCheck').style.display = 'none';
+
+  // Save seat count immediately when dropdown changes
+  seatsSelect.addEventListener('change', async () => {
+    const confirmedSeats = parseInt(seatsSelect.value, 10);
+    const { error } = await db
+      .from('guests')
+      .update({ confirmed_seats: confirmedSeats, updated_at: new Date().toISOString() })
+      .eq('id', selectedGuest.id);
+    if (!error) {
+      const check = document.getElementById('seatsCheck');
+      check.style.display = 'inline-flex';
+      // pulse animation
+      check.classList.remove('seats-check-pop');
+      void check.offsetWidth;
+      check.classList.add('seats-check-pop');
+    }
+  });
 });
 
 document.addEventListener('click', e => {

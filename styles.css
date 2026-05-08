@@ -763,6 +763,28 @@ section{
   background-position:right 0.75rem center;
   transition:border-color 0.3s;
 }
+.seats-select-wrap{
+  display:inline-flex;
+  align-items:center;
+  gap:0.75rem;
+}
+.seats-check{
+  display:none;
+  align-items:center;
+  gap:0.3rem;
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:0.72rem;
+  letter-spacing:0.12em;
+  color:#6fcf7a;
+  opacity:0.9;
+}
+@keyframes seatsPop{
+  0%{transform:scale(0.7);opacity:0}
+  60%{transform:scale(1.15)}
+  100%{transform:scale(1);opacity:1}
+}
+.seats-check-pop{animation:seatsPop 0.35s cubic-bezier(0.175,0.885,0.32,1.275) forwards}
 .seats-select:hover,.seats-select:focus{border-color:var(--champagne)}
 .seats-select option{background:#281008;color:var(--champagne)}
 .back-btn{
