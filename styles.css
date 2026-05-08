@@ -261,7 +261,7 @@ section{
 
 /* ── OUR STORY ── */
 #story{
-  background: linear-gradient(90deg, #c36e4a 0%, #e56023 100%);
+  background: linear-gradient(90deg, #e8a46b 0%, #ce6d55 100%);
 }
 .story-text{
   font-family:'Cormorant Garamond',serif;
@@ -322,7 +322,7 @@ section{
 
 /* ── SCHEDULE ── */
 #schedule{
-  background: linear-gradient(90deg, #c36e4a 0%, #e56023 100%);
+  background: linear-gradient(90deg, #BF79A9 0%, #6B44C7 100%);
 }
 .timeline{
   position:relative;
@@ -730,7 +730,7 @@ section{
 #enterOverlay{
   position:fixed;inset:0;
   z-index:999;
-  background:#1c0a02;
+  background: linear-gradient(180deg, #FCB045 0%, #FD1D1D 50%, #833AB4 100%);
   display:flex;align-items:center;justify-content:center;
   transition:opacity 1s ease, visibility 1s ease;
 }
@@ -749,7 +749,7 @@ section{
   font-family:'Cinzel',serif;
   font-size:clamp(2.5rem,8vw,5rem);
   letter-spacing:0.35em;
-  color:var(--champagne);
+  color:var(--cream);
   margin-bottom:1.5rem;
 }
 .enter-divider{
@@ -772,7 +772,7 @@ section{
   align-items:center;
   gap:0.4rem;
   background:transparent;
-  border:1px solid rgba(220,137,96,0.4);
+  border:1px solid #ffffff66;
   color:var(--warm-white);
   padding:1.1rem 3rem;
   cursor:pointer;
