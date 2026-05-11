@@ -600,6 +600,63 @@ section{
 }
 
 /* ── VENUE ── */
+/* Gift & Gratitude */
+#gifts{
+  background:var(--section-bg);
+  border-top:1px solid var(--border-soft);
+}
+.gift-block{
+  display:flex;
+  align-items:center;
+  gap:3rem;
+  padding:2.5rem 0;
+}
+.gift-icon{
+  flex-shrink:0;
+  color:var(--text-body);
+  opacity:0.7;
+}
+.gift-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  font-weight:300;
+  color:var(--text-body);
+  line-height:1.8;
+}
+
+/* Share The Love */
+#share{
+  background:var(--section-alt);
+  border-top:1px solid var(--border-soft);
+}
+.share-block{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:2.5rem 0;
+  gap:1.2rem;
+}
+.share-icon{
+  color:var(--text-body);
+  opacity:0.7;
+}
+.share-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;
+  font-weight:300;
+  color:var(--text-body);
+  line-height:1.8;
+}
+.share-hashtag{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1.3rem,4vw,2rem);
+  font-weight:500;
+  color:var(--dark);
+  letter-spacing:0.06em;
+  font-style:italic;
+}
+
 #venue{
   background:var(--section-alt);
   border-top:1px solid var(--border-soft);
@@ -1117,6 +1174,7 @@ footer{
   .timeline-item:nth-child(odd) .tl-empty,
   .timeline-item:nth-child(even) .tl-empty{display:none}
   .venue-grid{grid-template-columns:1fr}
+  .gift-block{flex-direction:column;text-align:center;gap:1.5rem}
   .rsvp-box{padding:2rem 1.5rem}
   .rsvp-choices{grid-template-columns:1fr}
 }
