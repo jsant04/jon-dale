@@ -121,7 +121,14 @@ document.addEventListener('click', e => {
 });
 
 // ── RSVP buttons ──
-document.getElementById('btnAttend').addEventListener('click',  () => submitRSVP('attending'));
+document.getElementById('btnAttend').addEventListener('click',  () => {
+  // Fire celebration confetti
+  const colors = ['#b85c30','#dc8960','#e8a07a','#FDF6F0','#f0b090','#FCB045'];
+  confetti({ particleCount: 100, spread: 70,  origin: { y: 0.65 }, colors });
+  confetti({ particleCount: 50,  spread: 100, origin: { y: 0.65 }, angle: 60,  colors });
+  confetti({ particleCount: 50,  spread: 100, origin: { y: 0.65 }, angle: 120, colors });
+  submitRSVP('attending');
+});
 document.getElementById('btnDecline').addEventListener('click', () => submitRSVP('not_attending'));
 
 async function submitRSVP(status) {
@@ -212,32 +219,74 @@ function showStep(id) {
 const bgMusic      = document.getElementById('bgMusic');
 const enterOverlay = document.getElementById('enterOverlay');
 const enterBtn     = document.getElementById('enterBtn');
+const stampVideo   = document.getElementById('stampVideo');
 
 bgMusic.volume = 0.35;
 bgMusic.load();
 
-enterBtn.addEventListener('click', () => {
-  // Play audio — must happen directly inside click handler (user gesture)
-  bgMusic.currentTime = 0;
-  bgMusic.play().then(() => {
-    // playing successfully
-  }).catch(() => {
-    // Some browsers need a tiny delay
-    setTimeout(() => bgMusic.play().catch(() => {}), 100);
-  });
+function dismissOverlay() {
+  enterOverlay.classList.add('hidden');
+  enterOverlay.addEventListener('transitionend', () => enterOverlay.remove(), { once: true });
+}
 
-  // Play hero video — also inside click handler to satisfy user gesture requirement
-  const heroVideo = document.querySelector('.hero-video');
-  if (heroVideo) {
-    heroVideo.muted = true; // ensure muted so browser allows autoplay
-    heroVideo.play().catch(() => {
-      setTimeout(() => heroVideo.play().catch(() => {}), 200);
+enterBtn.addEventListener('click', () => {
+  // Hide the Enter button immediately
+  enterBtn.style.transition = 'opacity 0.3s ease';
+  enterBtn.style.opacity = '0';
+  enterBtn.style.pointerEvents = 'none';
+
+  // Fade out rest of inner content after a short moment
+  setTimeout(() => {
+    const enterInner = document.getElementById('enterInner');
+    if (enterInner) {
+      enterInner.style.transition = 'opacity 0.5s ease';
+      enterInner.style.opacity = '0';
+      enterInner.style.pointerEvents = 'none';
+    }
+  }, 600);
+
+  // Play wax-stamp video (requires user gesture)
+  const playPromise = stampVideo.play();
+
+  // Fallback: if video can't play or stalls, dismiss after 3s
+  const fallbackTimer = setTimeout(launchMain, 3000);
+
+  function launchMain() {
+    clearTimeout(fallbackTimer);
+
+    // Start background music
+    bgMusic.currentTime = 0;
+    bgMusic.play().catch(() => {
+      setTimeout(() => bgMusic.play().catch(() => {}), 100);
     });
+
+    // Start hero video
+    const heroVideo = document.querySelector('.hero-video');
+    if (heroVideo) {
+      heroVideo.muted = true;
+      heroVideo.play().catch(() => {
+        setTimeout(() => heroVideo.play().catch(() => {}), 200);
+      });
+    }
+
+    dismissOverlay();
   }
 
-  // Hide overlay after a short delay so audio starts cleanly
-  setTimeout(() => {
-    enterOverlay.classList.add('hidden');
-    enterOverlay.addEventListener('transitionend', () => enterOverlay.remove(), { once: true });
-  }, 80);
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        // Video is playing — wait for it to end before launching main
+        stampVideo.addEventListener('ended', launchMain, { once: true });
+        clearTimeout(fallbackTimer); // reset fallback since video is actually playing
+        // Re-set fallback based on video duration once metadata is ready
+        stampVideo.addEventListener('loadedmetadata', () => {
+          const dur = (stampVideo.duration || 3) * 1000 + 500;
+          // already playing — set a safety net timeout slightly after duration
+        }, { once: true });
+      })
+      .catch(() => {
+        // Can't play at all — go straight to main
+        launchMain();
+      });
+  }
 });

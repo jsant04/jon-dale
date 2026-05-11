@@ -17,10 +17,12 @@
 
 <!-- Enter splash — guarantees music plays (browser requires a click first) -->
 <div id="enterOverlay">
-  <div class="enter-inner">
-    <div class="enter-monogram">J &amp; D</div>
-    <div class="enter-divider"></div>
-    <p class="enter-date">August 8 &middot; 2026</p>
+  <video class="stamp-video" id="stampVideo" muted playsinline preload="auto">
+    <source src="wax-stamp.mp4" type="video/mp4">
+  </video>
+  <div class="enter-inner" id="enterInner">
+    <p class="enter-eyebrow">You are invited</p>
+    <p class="enter-date">August 8, 2026</p>
     <button id="enterBtn">
       <span class="enter-btn-text">Enter</span>
     </button>
@@ -302,7 +304,7 @@
     <h2 class="section-heading reveal reveal-delay-1" style="text-align:center">
       Will You <em>Join Us?</em>
     </h2>
-    <p class="reveal reveal-delay-2" style="text-align:center;font-size:0.85rem;font-weight:200;color:white;letter-spacing:0.08em;margin-bottom:0.5rem">
+    <p class="reveal reveal-delay-2" style="text-align:center;font-size:0.85rem;font-weight:200;color:var(--text-muted);letter-spacing:0.08em;margin-bottom:0.5rem">
       Kindly respond by June 30
     </p>
 
@@ -372,6 +374,7 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 <script src="supabase-config.js"></script>
 <script src="rsvp.js"></script>
 </body>
