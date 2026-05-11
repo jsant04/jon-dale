@@ -235,15 +235,35 @@ enterBtn.addEventListener('click', () => {
   enterBtn.style.opacity = '0';
   enterBtn.style.pointerEvents = 'none';
 
-  // Fade out rest of inner content after a short moment
+  // Swap "You are invited" → "J & D"
+  const eyebrow = document.querySelector('.enter-eyebrow');
+  const dateEl  = document.querySelector('.enter-date');
+  if (eyebrow) {
+    eyebrow.style.transition = 'opacity 0.35s ease';
+    eyebrow.style.opacity = '0';
+    setTimeout(() => {
+      eyebrow.textContent = 'J & D';
+      eyebrow.style.fontStyle = 'italic';
+      eyebrow.style.fontSize = 'clamp(3rem,10vw,6.5rem)';
+      eyebrow.style.letterSpacing = '0.18em';
+      eyebrow.style.opacity = '1';
+    }, 380);
+  }
+  if (dateEl) {
+    dateEl.style.transition = 'opacity 0.35s ease';
+    dateEl.style.opacity = '0';
+    setTimeout(() => { dateEl.style.opacity = '1'; }, 380);
+  }
+
+  // Fade out the whole inner block after showing J & D briefly
   setTimeout(() => {
     const enterInner = document.getElementById('enterInner');
     if (enterInner) {
-      enterInner.style.transition = 'opacity 0.5s ease';
+      enterInner.style.transition = 'opacity 0.6s ease';
       enterInner.style.opacity = '0';
       enterInner.style.pointerEvents = 'none';
     }
-  }, 600);
+  }, 1600);
 
   // Play wax-stamp video (requires user gesture)
   const playPromise = stampVideo.play();
