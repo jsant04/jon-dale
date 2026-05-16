@@ -155,7 +155,6 @@ async function submitRSVP(status) {
 
   document.getElementById('confirmIcon').textContent    = attending ? '🥂' : '💌';
   document.getElementById('confirmHeading').textContent = attending ? "We'll see you there!" : "We'll miss you dearly";
-  document.getElementById('confirmName').textContent    = selectedGuest.name;
   document.getElementById('confirmText').innerHTML      = attending
     ? `Thank you, <span class="confirm-name-em">${selectedGuest.name}</span>.<br>Your RSVP has been received with joy. We can't wait to celebrate with you!`
     : `Thank you, <span class="confirm-name-em">${selectedGuest.name}</span>.<br>We're sorry you won't be able to join us, but we'll carry you in our hearts on our special day.`;
