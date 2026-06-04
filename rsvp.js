@@ -147,6 +147,26 @@ async function submitRSVP(status) {
     // Still show confirmation to the guest — don't leave them hanging
   }
 
+  // Send email notification via Resend (Supabase Edge Function)
+  try {
+    const notifyRes = await fetch(`${SUPABASE_URL}/functions/v1/notify-rsvp`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${SUPABASE_ANON}`,
+      },
+      body: JSON.stringify({
+        guestName: selectedGuest.name,
+        seats: confirmedSeats,
+        status,
+      }),
+    });
+    const notifyData = await notifyRes.json();
+    console.log('[notify-rsvp] status:', notifyRes.status, notifyData);
+  } catch (notifyErr) {
+    console.warn('[notify-rsvp] fetch failed:', notifyErr);
+  }
+
   // Update local cache so re-searches reflect the change
   const cached = allGuests.find(g => g.id === selectedGuest.id);
   if (cached) cached.status = status;
