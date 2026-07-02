@@ -33,8 +33,9 @@ async function loadGuests() {
 }
 loadGuests();
 
-if (isRsvpClosed()) {
-  document.getElementById('rsvpClosedBanner').style.display = 'block';
+const rsvpClosedBanner = document.getElementById('rsvpClosedBanner');
+if (isRsvpClosed() && rsvpClosedBanner) {
+  rsvpClosedBanner.style.display = 'block';
 }
 
 // ── RSVP search ──
@@ -42,7 +43,7 @@ const searchInput = document.getElementById('guestSearch');
 const sugBox      = document.getElementById('suggestions');
 const notFound    = document.getElementById('notFound');
 
-searchInput.addEventListener('input', () => {
+if (searchInput) searchInput.addEventListener('input', () => {
   const q = searchInput.value.trim().toLowerCase();
   notFound.style.display = 'none';
 
@@ -75,9 +76,9 @@ searchInput.addEventListener('input', () => {
     </div>`;
   }).join('');
   sugBox.style.display = 'block';
-});
+}); // end searchInput guard
 
-sugBox.addEventListener('click', e => {
+if (sugBox) sugBox.addEventListener('click', e => {
   if (isRsvpClosed()) return;
   const item = e.target.closest('.suggestion-item');
   if (!item) return;
@@ -124,14 +125,19 @@ sugBox.addEventListener('click', e => {
       check.classList.add('seats-check-pop');
     }
   };
-});
+}); // end sugBox guard
 
-document.addEventListener('click', e => {
+if (sugBox) document.addEventListener('click', e => {
   if (!e.target.closest('.search-wrapper')) sugBox.style.display = 'none';
 });
 
 // ── RSVP buttons ──
-document.getElementById('btnAttend').addEventListener('click',  () => {
+const btnAttend  = document.getElementById('btnAttend');
+const btnDecline = document.getElementById('btnDecline');
+const backBtn    = document.getElementById('backBtn');
+const resetBtn   = document.getElementById('resetBtn');
+
+if (btnAttend) btnAttend.addEventListener('click',  () => {
   // Fire celebration confetti
   const colors = ['#b85c30','#dc8960','#e8a07a','#FDF6F0','#f0b090','#FCB045'];
   confetti({ particleCount: 100, spread: 70,  origin: { y: 0.65 }, colors });
@@ -139,7 +145,7 @@ document.getElementById('btnAttend').addEventListener('click',  () => {
   confetti({ particleCount: 50,  spread: 100, origin: { y: 0.65 }, angle: 120, colors });
   submitRSVP('attending');
 });
-document.getElementById('btnDecline').addEventListener('click', () => submitRSVP('not_attending'));
+if (btnDecline) btnDecline.addEventListener('click', () => submitRSVP('not_attending'));
 
 async function submitRSVP(status) {
   if (!selectedGuest) return;
@@ -192,7 +198,7 @@ async function submitRSVP(status) {
   showStep('step-done');
 }
 
-document.getElementById('backBtn').addEventListener('click', () => {
+if (backBtn) backBtn.addEventListener('click', () => {
   selectedGuest = null;
   document.getElementById('seatsRow').style.display = 'none';
   const sc = document.getElementById('seatsCheck');
@@ -204,7 +210,7 @@ document.getElementById('backBtn').addEventListener('click', () => {
   showStep('step-search');
 });
 
-document.getElementById('resetBtn').addEventListener('click', () => {
+if (resetBtn) resetBtn.addEventListener('click', () => {
   selectedGuest = null;
   document.getElementById('seatsRow').style.display = 'none';
   const sc = document.getElementById('seatsCheck');
