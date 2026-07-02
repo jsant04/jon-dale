@@ -375,7 +375,9 @@
       Will You <em>Join Us?</em>
     </h2>
     <p class="reveal reveal-delay-2" style="text-align:center;font-size:0.85rem;font-weight:200;color:var(--text-muted);letter-spacing:0.08em;margin-bottom:0.5rem">
-      Kindly respond by June 30
+      Kindly confirm your attendance by June 30.
+    </p><p class="reveal reveal-delay-2" style="text-align:center;font-size:0.85rem;font-weight:200;color:var(--text-muted);letter-spacing:0.08em;margin-bottom:0.5rem">
+      (The RSVP form will close on this date)
     </p>
 
     <div class="rsvp-box reveal reveal-delay-3">
@@ -383,6 +385,10 @@
       <!-- Step 1: Search -->
       <div class="rsvp-step active" id="step-search">
         <p class="rsvp-label">Find Your Name</p>
+        <div class="rsvp-closed-banner" id="rsvpClosedBanner" style="display:none">
+          <p>RSVP submissions are now closed.</p>
+          <p>You may still search for your name below.</p>
+        </div>
         <div class="search-wrapper">
           <input
             class="rsvp-input"

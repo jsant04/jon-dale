@@ -1,3 +1,6 @@
+const RSVP_DEADLINE = new Date('2026-06-30T00:00:00');
+const isRsvpClosed  = () => new Date() >= RSVP_DEADLINE;
+
 let selectedGuest = null;
 let allGuests     = [];   // cached after first load
 
@@ -30,6 +33,10 @@ async function loadGuests() {
 }
 loadGuests();
 
+if (isRsvpClosed()) {
+  document.getElementById('rsvpClosedBanner').style.display = 'block';
+}
+
 // ── RSVP search ──
 const searchInput = document.getElementById('guestSearch');
 const sugBox      = document.getElementById('suggestions');
@@ -52,23 +59,26 @@ searchInput.addEventListener('input', () => {
     return;
   }
 
+  const closed = isRsvpClosed();
   sugBox.innerHTML = matches.slice(0, 8).map(g => {
     const statusLabel = g.status === 'attending'
       ? '<span class="sug-status sug-status--attending">✓ Attending</span>'
       : g.status === 'not_attending'
         ? '<span class="sug-status sug-status--declined">✗ Declined</span>'
         : '';
+    const closedBadge = closed ? '<span class="sug-status sug-status--closed">Closed</span>' : '';
     return `
-    <div class="suggestion-item" data-id="${g.id}">
+    <div class="suggestion-item${closed ? ' suggestion-item--closed' : ''}" data-id="${g.id}">
       <span class="sug-name">${g.name}</span>
       <span class="sug-seats">${g.seats} seat${g.seats > 1 ? 's' : ''}</span>
-      ${statusLabel}
+      ${statusLabel}${closedBadge}
     </div>`;
   }).join('');
   sugBox.style.display = 'block';
 });
 
 sugBox.addEventListener('click', e => {
+  if (isRsvpClosed()) return;
   const item = e.target.closest('.suggestion-item');
   if (!item) return;
 

@@ -995,6 +995,29 @@ section{
   color:#eb6450;
   border:1px solid rgba(235,100,80,0.25);
 }
+.sug-status--closed{
+  background:rgba(120,120,120,0.12);
+  color:rgba(200,200,200,0.65);
+  border:1px solid rgba(120,120,120,0.25);
+}
+.suggestion-item--closed{
+  cursor:not-allowed;
+  opacity:0.5;
+  pointer-events:none;
+}
+.suggestion-item--closed:hover{background:transparent}
+.rsvp-closed-banner{
+  text-align:center;
+  padding:0.9rem 1.2rem;
+  margin-bottom:1rem;
+  background:rgba(184,92,48,0.07);
+  border:1px solid rgba(184,92,48,0.22);
+  color:var(--text-muted);
+  font-size:0.8rem;
+  letter-spacing:0.08em;
+  font-weight:200;
+  line-height:1.7;
+}
 .seats-check{
   display:none;
   align-items:center;
